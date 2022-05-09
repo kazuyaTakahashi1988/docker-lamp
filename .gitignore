@@ -4,4 +4,4 @@
 /htdocs/*
 /.data/*
 /.webserver/httpd.conf
-
+.gitignore
