@@ -4,7 +4,7 @@ services:
  mysql:
    platform: linux/x86_64
    image: mysql:5.7
-   container_name: php72-apache-mysql
+   container_name: php73-apache-mysql
    volumes:
     - "./.data/mysql:/var/lib/mysql"
    restart: always
@@ -17,9 +17,9 @@ services:
    depends_on:
     - mysql
    image: phpmyadmin/phpmyadmin
-   container_name: php72-apache-phpmyadmin
+   container_name: php73-apache-phpmyadmin
    environment:
-    - PMA_HOST=php72-apache-mysql
+    - PMA_HOST=php73-apache-mysql
    restart: always
    ports:
     - "3000:80"
@@ -27,11 +27,11 @@ services:
     - docker-networks
 
  web:
-   build: .web
-   container_name: php72-apache-web
+   build: .webserver
+   container_name: php73-apache-web
    volumes:
     - "./htdocs:/var/www/htdocs"
-    - "./.web:/etc/apache2/sites-enabled"
+    - "./.webserver:/etc/apache2/sites-enabled"
    ports:
     - 80:80
    restart: always
@@ -44,9 +44,9 @@ services:
       - example-site2.jp.localhost
       - example-site3.jp.localhost
       # ★ 命名規則は「 subdomain.localhost 」 ★ 
-      # ★ 増やしたら「 ./.web/httpd.conf 」も編集してください ★ 
-      # ★ Mammp・Xammp運用時と同じように D://private/etc/hosts ファイルも編集 ★ 
+      # ★ 増やしたら「 ./.web/httpd.conf 」も編集しコンテナを再起動してください ★ 
+      # ★ hostsファイル（ D://private/etc/ ）は編集しなくてもOK ★ 
 networks:
  docker-networks:
 
-# ★ 他の仮想環境でport番号 "3000:80" と "80:80" を使ってる場合は適宜変更してください ★ 
+# ★ 他の仮想環境でport番号 "3000:80" と "80:80" を使ってる場合は適宜どちらかを変更してください ★ 
