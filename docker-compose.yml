@@ -45,7 +45,7 @@ services:
       - example-site3.jp.localhost
       # ★ 命名規則は「 subdomain.localhost 」 ★ 
       # ★ 増やしたら「 ./.webserver/httpd.conf 」も編集しコンテナを再起動してください ★ 
-      # ★ hostsファイル（ D://private/etc/ ）は編集しなくてもOK ★ 
+      # ★ hostsファイル（ D://private/etc/ ）は編集しなくてもOK（Safariブラウザを使用する人は編集必要） ★ 
 networks:
  docker-networks:
 
