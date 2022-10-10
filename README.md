@@ -1,4 +1,4 @@
-- MAMMP / XAMMP とさようならできるDockerコンテナです。
+- MAMMP / XAMMP とさようならできるLAMP on Dockerコンテナです。
 - composerが入っているのでLaravelも動きます（他WordPressも）。使用できるメーラーは「sendmail」。
 - docker-compose.yml ファイルがある場所でターミナルを開き、以下のコマンドを叩く　　
  
