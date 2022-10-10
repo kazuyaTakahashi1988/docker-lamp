@@ -2,7 +2,18 @@ FROM wordpress:5.8.1-php7.3-apache
 RUN a2enmod rewrite
 RUN apt-get update \
   && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
+  && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
   && docker-php-ext-install pdo_mysql mysqli mbstring gd iconv
+
+COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
+
+RUN apt-get update  \
+    && apt-get -y install \
+    git \
+    zip \
+    unzip \
+    vim \
+    && docker-php-ext-install  bcmath 
 
 # sendmailを使うためのインストール
 RUN apt-get update \
